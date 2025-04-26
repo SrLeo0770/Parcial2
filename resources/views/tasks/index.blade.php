@@ -48,11 +48,18 @@
     .btn {
         display: inline-block;
         padding: 10px 15px;
-        font-size: 1rem;
+        font-size: 14px;
         color: #fff;
         text-decoration: none;
         border-radius: 5px;
         margin-right: 5px;
+    }
+    .btn-create {
+        background-color: #007BFF;
+        margin-bottom: 15px;
+    }
+    .btn-create:hover {
+        background-color: #0056b3;
     }
     .btn-edit {
         background-color: #28a745;
@@ -65,13 +72,6 @@
     }
     .btn-delete:hover {
         background-color: #c82333;
-    }
-    .btn-create {
-        background-color: #007BFF;
-        margin-bottom: 15px;
-    }
-    .btn-create:hover {
-        background-color: #0056b3;
     }
     .btn-back {
         display: inline-block;
@@ -93,6 +93,16 @@
         <h1>Lista de Tareas</h1>
         <a href="{{ route('tasks.create') }}" class="btn btn-create">Crear Nueva Tarea</a>
         <a href="{{ url('/') }}" class="btn btn-back" style="float: right; margin-bottom: 15px;">Volver al Menú Principal</a>
+
+        <form method="GET" action="{{ route('tasks.index') }}" style="margin-bottom: 20px;">
+            <label for="sort" style="margin-right: 10px;">Ordenar por:</label>
+            <select name="sort" id="sort" onchange="this.form.submit()" style="padding: 5px; border-radius: 5px;">
+                <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>Nombre</option>
+                <option value="status" {{ request('sort') == 'status' ? 'selected' : '' }}>Estado</option>
+                <option value="due_date" {{ request('sort') == 'due_date' ? 'selected' : '' }}>Fecha de Cumplimiento</option>
+            </select>
+        </form>
+
         <table>
             <thead>
                 <tr>
@@ -123,7 +133,7 @@
                             <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-delete">Eliminar</button>
+                                <button type="submit" class="btn btn-delete">Borrar</button>
                             </form>
                         </td>
                     </tr>

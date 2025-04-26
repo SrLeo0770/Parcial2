@@ -74,7 +74,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Crear Nueva Tarea</h1>
+        <h1>Registrar Nueva Tarea</h1>
+
+        @if ($errors->any())
+            <div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('tasks.store') }}" method="POST">
             @csrf
             <label for="title">Título</label>
@@ -93,9 +104,8 @@
             <label for="due_date">Fecha de Cumplimiento</label>
             <input type="date" id="due_date" name="due_date" required>
 
-            <button type="submit">Crear Tarea</button>
+            <button type="submit">Registrar Tarea</button>
         </form>
-        <a href="{{ url('/') }}" class="btn btn-back" style="margin-top: 30px;">Volver al Menú Principal</a>
     </div>
 </body>
 </html>

@@ -10,9 +10,12 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::all();
+        $sort = $request->get('sort', 'title'); // Ordenar por título de forma predeterminada
+
+        $tasks = Task::orderBy($sort)->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
