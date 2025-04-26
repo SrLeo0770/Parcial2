@@ -64,8 +64,6 @@
         text-decoration: none;
         border-radius: 5px;
         text-align: center;
-        width: 100%;
-        box-sizing: border-box;
     }
     .btn-back:hover {
         background-color: #5a6268;
@@ -106,6 +104,8 @@
 
             <button type="submit">Registrar Tarea</button>
         </form>
+
+        <a href="{{ url('/') }}" class="btn btn-back" style="margin-top: 15px; padding: 10px 15px; font-size: 1rem;">Volver al Menú Principal</a>
     </div>
 </body>
 </html>

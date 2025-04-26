@@ -64,8 +64,6 @@
         text-decoration: none;
         border-radius: 5px;
         text-align: center;
-        width: 100%;
-        box-sizing: border-box;
     }
     .btn-back:hover {
         background-color: #5a6268;
@@ -75,6 +73,7 @@
 <body>
 <div class="container">
     <h1>Editar Tarea</h1>
+    <a href="{{ route('tasks.index') }}" class="btn btn-back" style="margin-bottom: 15px;">Atrás</a>
     <form action="{{ route('tasks.update', $task->id) }}" method="POST">
         @csrf
         @method('PUT')
